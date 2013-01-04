@@ -3,7 +3,7 @@ package xceeds.codeassigment;
 import java.util.List;
 
 import xceeds.codeassigment.tweetreader.TweetReader;
-import xceeds.codeassigment.tweetreader.TweetReaderUsesPropertiesFile;
+import xceeds.codeassigment.tweetreader.TweetReaderUsingPropertiesFile;
 
 
 /**
@@ -14,7 +14,7 @@ public class App
 {
     public static void main(String[] args )
     {
-    	TweetReader tweetReader = new TweetReaderUsesPropertiesFile();
+    	TweetReader tweetReader = new TweetReaderUsingPropertiesFile();
     	
     	List<String> last100Tweets = tweetReader.readTweets("Khabar_KSA", 100);
     	
