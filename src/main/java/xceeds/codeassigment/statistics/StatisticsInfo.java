@@ -3,7 +3,7 @@ package xceeds.codeassigment.statistics;
 import com.google.common.collect.Multiset;
 
 /**
- * This class is returned by the {@link StatisticExtracter#calculate(java.util.List)} method.
+ * This class is returned by the {@link StatisticExtracter#analyze(java.util.List)} method.
  * 
  * It simply contains two multisets, one tracking the number of times a word occurred in several tweets,
  * and another multiset containing the number of time a two letter word occurred, a three letter word, a four letter word,

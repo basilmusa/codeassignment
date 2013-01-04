@@ -12,9 +12,9 @@ import com.google.common.collect.Multiset;
  */
 public class StatisticExtracter 
 {
-	private static Splitter splitter;
+	private static Splitter splitter = Splitter.on(' ').trimResults().omitEmptyStrings();
 
-	public static StatisticsInfo calculate(List<String> tweets) 
+	public static StatisticsInfo analyze(List<String> tweets) 
 	{
 		Multiset<String> wordCount = HashMultiset.create();
 		Multiset<Integer> wordLengthCount = HashMultiset.create();
