@@ -12,6 +12,7 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
+import xceeds.codeassigment.config.Configuration;
 
 /**
  * This is an implementation of TweetReader that takes its initialization
@@ -32,26 +33,31 @@ public class TweetReaderUsingPropertiesFile implements TweetReader
 {
 	private static final int MAX_TWEET_READS_PERMITTED = 10000;
 	private Twitter twitter;
-
 	
 	public TweetReaderUsingPropertiesFile() 
 	{
+		Configuration propConfig = Configuration.getInstance();
+		
         ConfigurationBuilder cb = new ConfigurationBuilder()
-	    	.setDebugEnabled(true)
-	    	.setHttpProxyHost("iproxy.isu.net.sa")
-	    	.setHttpProxyPort(8080)
-	    	.setOAuthConsumerKey("DmrUqDEgZCrylTYjDK9w")
-	    	.setOAuthConsumerSecret("3O9lrkt6iyjpudGTTud7B5QfHuHoYMsBJgo7oladU")
-	    	.setOAuthAccessToken("989118554-i2LMnTQrmc50572teBPU1yBJnvMGIOFctF8t6RKD")
-	    	.setOAuthAccessTokenSecret("8VDYi9ZXdXAJX73vmreVb2hseuwuSuLvHh3l8Nygo");
-    
+	    	.setDebugEnabled(propConfig.isDebug())
+	    	.setOAuthConsumerKey(propConfig.getOauthConsumerKey())
+	    	.setOAuthConsumerSecret(propConfig.getOauthConsumerSecret())
+	    	.setOAuthAccessToken(propConfig.getOauthAccessToken())
+	    	.setOAuthAccessTokenSecret(propConfig.getOauthAccessTokenSecret());
+
+        if (!propConfig.getHttpProxyHost().isEmpty()) {
+        	cb.setHttpProxyHost(propConfig.getHttpProxyHost());
+        }
+        if (propConfig.getHttpProxyPort() != null) {
+        	cb.setHttpProxyPort(propConfig.getHttpProxyPort());
+        }
+
 	    twitter = new TwitterFactory(cb.build()).getInstance();
 	}
 	
 
 	/**
 	 * Screen name example is "Khabar_KSA"
-	 * 
 	 * 
 	 */
 	public List<String> readTweets(String screenName, int tweetsToRead) 

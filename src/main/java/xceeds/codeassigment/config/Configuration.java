@@ -52,8 +52,16 @@ public class Configuration
 		return Strings.nullToEmpty(properties.getProperty(HTTP_PROXY_HOST));
 	}
 	
-	public Integer getHttpProxyPort() {
-		return Integer.valueOf(properties.getProperty(HTTP_PROXY_PORT));
+	public Integer getHttpProxyPort() 
+	{
+		Integer proxyPort = 0;
+
+		try {
+			proxyPort = Integer.valueOf(properties.getProperty(HTTP_PROXY_PORT));
+		} catch (NumberFormatException e) {
+			proxyPort = 0;
+		}
+		return proxyPort;
 	}
 	
 	public String getOauthConsumerKey() {
@@ -83,5 +91,18 @@ public class Configuration
 		else {
 			return false;
 		}
+	}
+	
+	public static void main(String[] args) {
+		Configuration instance = Configuration.getInstance();
+		System.out.println(
+			instance.getHttpProxyHost() + "\n" +
+			instance.getHttpProxyPort() + "\n" + 
+			instance.getOauthAccessToken() + "\n" + 
+			instance.getOauthAccessTokenSecret() + "\n" +
+			instance.getOauthConsumerKey() + "\n" +
+			instance.getOauthConsumerSecret() + "\n" +
+			instance.isDebug()
+				);
 	}
 }
