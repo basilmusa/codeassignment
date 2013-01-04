@@ -48,7 +48,8 @@ public class App
      * 
      * @param statisticsInfo
      */
-	private static void printResults(StatisticsInfo statisticsInfo) {
+	private static void printResults(StatisticsInfo statisticsInfo) 
+	{
 		Set<String> elementSet = statisticsInfo.getWordCount().elementSet();
 
     	// Print on screen words occurring more than 3 times in the last 100 tweets
