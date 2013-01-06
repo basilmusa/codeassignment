@@ -7,10 +7,14 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.Mongo;
 
-public class MongoDBPersist {
-	public static void main(String[] args) {
+public class MongoDBPersist 
+{
+	public static void main(String[] args) 
+	{
 		Mongo mongo;
-		try {
+		
+		try 
+		{
 			mongo = new Mongo("localhost", 27017);
 
 			DB db = mongo.getDB("xceeds");
@@ -21,10 +25,6 @@ public class MongoDBPersist {
 					"wordLengthCount", 10);
 
 			collection.insert(object);
-			
-			collection.save
-			db.cleanCursors(true);
-			
 
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
