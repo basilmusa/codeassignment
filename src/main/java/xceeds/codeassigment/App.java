@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.google.common.collect.Multiset;
 
+import xceeds.codeassigment.database.MongoDBPersist;
 import xceeds.codeassigment.statistics.StatisticExtracter;
 import xceeds.codeassigment.statistics.StatisticsInfo;
 import xceeds.codeassigment.tweetreader.TweetReader;
@@ -37,7 +38,7 @@ public class App
     	StatisticsInfo statisticsInfo = StatisticExtracter.analyze(last100Tweets);
 
     	// Store the results in the MongoDB
-    	
+    	MongoDBPersist.getInstance().storeStatistics(statisticsInfo);
     	
     	// Format the results showing useful info
     	printResults(statisticsInfo);
